@@ -12,7 +12,7 @@
     Info
   </a>
 </li>
-{% if request.user.is_authenticated %}
+{% if request.user.is_authenticated and request.user.client %}
 <li>
   <a href="#" class="nav-link text-white">
     <i class="fa-solid fa-user"></i>
