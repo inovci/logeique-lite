@@ -30,6 +30,12 @@ def login(request):
             'login/login.html'
         )
 
+def aut_login(request):
+    return render(
+            request,
+            'register/aut_login.html'
+        )
+
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -47,14 +53,33 @@ def register(request):
                 messages.info(request, 'Contact déjà utilisé !')
                 return redirect('my_auths:register')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save()
+                #user = User.objects.create_user(username=username, email=email, password=password)
+                #user.save()
+
+                if status == 'landlord':
+                    user = User.objects.create_user(username=username, email=email, password=password)
+                    user.save()
+
+                    landlord = Landlord.objects.create(
+                        user=user,
+                        contact=username
+                    )
+                    landlord.save()
+                elif status == 'client':
+                    user = User.objects.create_user(username=username, email=email, password=password)
+                    user.save()
+                    
+                    client  = Client.objects.create(
+                        user=user,
+                        contact=username
+                    )
+                    client.save()
 
                 #log user in and redirect to settings page
                 user_login = auth.authenticate(username=username, password=password)
                 if user_login:
                     auth.login(request, user_login)
-                    return redirect('my_auths:login')
+                    return redirect('my_auths:aut_login')
 
                 #create a Profile object for the new user
                 """

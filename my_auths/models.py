@@ -15,7 +15,7 @@ class Landlord(models.Model):
         return f"Statut: Propriétaire - User: {self.user} - Contact: {self.contact}"
 
     def statuLogeique(self):
-        return f"Propriétaire"
+        return f"landlord"
 
 
 class Client(models.Model):
@@ -30,7 +30,7 @@ class Client(models.Model):
         return f"Statut: Client - User: {self.user} - Contact: {self.contact}"
 
     def statuLogeique(self):
-        return f"Client"
+        return f"client"
 
 
 class Maison(models.Model):
