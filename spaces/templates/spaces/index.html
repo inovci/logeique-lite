@@ -1,13 +1,31 @@
-{% extends "base/base.html" %}
-{% load static %}
+{% extends "base/base.html" %} {% load static %}
 
 <head>
-{% block custom-style-app %}
-  {% include "spaces/css/index_css.html" %}
-{% endblock %}
+  {% block custom-style-app %} {% include "spaces/css/index_css.html" %}
+  {%endblock %}
 </head>
 
-{% block body-app %}
+{% block client-space %}
+<li>
+  <a href="#" class="nav-link text-white">
+    <i class="fa fa-info-circle" aria-hidden="true"></i>
+    Info
+  </a>
+</li>
+{% if request.user.is_authenticated %}
+<li>
+  <a href="#" class="nav-link text-white">
+    <i class="fa-solid fa-user"></i>
+    Compte client
+  </a>
+</li>
+<li>
+  <a href="{% url 'my_auths:logout' %}" class="nav-link text-white">
+    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    DECONNEXION
+  </a>
+</li>
+{% endif %} {% endblock %} {% block body-app %}
 <div style="position: relative;">
   <img
     src="{% static 'top-real-estate.webp' %}"
@@ -114,16 +132,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   En savoir plus
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Contacter
                 </button>
               </div>
@@ -157,16 +169,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
               </div>
@@ -200,16 +206,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
               </div>
@@ -244,16 +244,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
               </div>
@@ -287,16 +281,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
               </div>
@@ -330,16 +318,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
               </div>
@@ -374,16 +356,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
               </div>
@@ -417,16 +393,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
               </div>
@@ -460,16 +430,10 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   View
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                >
+                <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
               </div>

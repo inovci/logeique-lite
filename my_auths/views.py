@@ -10,6 +10,8 @@ import random
 
 # Create your views here.
 
+# ---------------------------------------------------------------Auths views---------------------------------------------------------
+
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -68,7 +70,7 @@ def register(request):
                 elif status == 'client':
                     user = User.objects.create_user(username=username, email=email, password=password)
                     user.save()
-                    
+
                     client  = Client.objects.create(
                         user=user,
                         contact=username
@@ -105,7 +107,19 @@ def logout(request):
 
 @login_required(login_url='my_auths:login')
 def user_space(request):
-    return render(
-        request,
-        'space/space.html'
-    )
+    user = request.user
+    
+    try:
+        user.landlord
+        status = user.landlord.statuLogeique
+        return render(
+            request,
+            'space/space.html',
+            locals()
+        )
+    except:
+        user.client
+        status = user.client.statuLogeique
+        return redirect('spaces:home')
+
+# --------------------------------------------------------Landlord views-----------------------------------------------------------------
