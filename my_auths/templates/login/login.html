@@ -64,21 +64,33 @@
       </div>
 
       <div class="card-body">
-        <form class="needs-validation" novalidate>
+        <div>
+          <style>
+              h5{
+                  color: red;
+              }
+          </style>
+          {% for message in messages %}
+            <h5>{{message}}</h5>
+          {% endfor %}
+        </div>
+        
+        <form class="needs-validation" action="" method="POST" novalidate>
+          {% csrf_token %}
           <div class="mb-3 row">
             <div class="col-sm-12" style=" margin: 0.5em 0em;">
-              <input style="font-size: 20px;border-radius: 1em; padding: 0.1em 1em;height: 130%;" type="text" class="form-control" id="inputText" placeholder="Contact" required>
+              <input name="username" style="font-size: 20px;border-radius: 1em; padding: 0.1em 1em;height: 130%;" type="text" class="form-control" id="inputText" placeholder="Contact" required>
             </div>
           </div>
 
           <div class="mb-3 row">            
             <div class="col-sm-12" style=" margin: 0.5em 0em;">
-              <input style="font-size: 20px;border-radius: 1em; padding: 0.1em 1em;height: 130%;" type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" required>
+              <input name="password" style="font-size: 20px;border-radius: 1em; padding: 0.1em 1em;height: 130%;" type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" required>
             </div>
           </div>
 
           <div class="mb-3 row">
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="margin-top: 0.5em;">
               <div class="d-flex justify-content-center">
                 <button style="width: 100%;border-radius: 1em;height: 130%;" type="submit" class="btn btn-dark">CONNEXION</button>
               </div>
