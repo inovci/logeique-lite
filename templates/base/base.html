@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}LOGEIQUE APP{% endblock %}</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet" />
+    <!--load all styles -->
+
+    <!-- Our project just needs Font Awesome Solid + Brands -->
+    <script defer src="{% static 'fontawesome/js/brands.js' %}"></script>
+    <script defer src="{% static 'fontawesome/js/solid.js' %}"></script>
+    <script defer src="{% static 'fontawesome/js/fontawesome.js' %}"></script>
+    {% block custom-style-app %}{% endblock %}
+  </head>
+  <body>
+    {% block header-app %}
+    <header>
+      <div class="px-3 py-2 bg-dark text-white">
+        <div class="container">
+          <div
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+          >
+            <a
+              href="/"
+              class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+            >
+              <img
+                src="{% static 'cupra-logo-black.png' %}"
+                alt=""
+                width="30"
+                height="24"
+                class="d-inline-block align-text-top"
+                style="margin-right: 1em;"
+              />
+              LOGEIQUE
+            </a>
+
+            <ul
+              class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+            >
+              <li>
+                <a
+                  href="{% url 'my_auths:login' %}"
+                  class="nav-link text-white"
+                >
+                  Connexion
+                </a>
+              </li>
+              <li>
+                <a
+                  href="{% url 'my_auths:register' %}"
+                  class="nav-link text-white"
+                >
+                  Inscription
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  Info
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  Effet
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    {% endblock %} {% block body-app %} {% endblock %} {% block footer-app %}
+    <footer class="text-muted py-5">
+      <div class="container">
+        <p class="float-end mb-1">
+          <a href="#">Back to top</a>
+        </p>
+        <p class="mb-1">
+          This app is &copy; LOGEIQUE
+        </p>
+      </div>
+    </footer>
+    {% endblock %}
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+
+    {% block costum-scripts %}{% endblock %}
+  </body>
+</html>

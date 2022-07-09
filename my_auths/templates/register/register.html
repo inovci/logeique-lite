@@ -1,0 +1,159 @@
+{% extends "base/base.html" %} {% load static %}
+
+<head>
+  {% block custom-style-app %}
+    {% include "register/css/register_css.html" %}
+  {% endblock %}
+</head>
+
+{% block header-app %}
+<header>
+  <div class="px-3 py-2 bg-dark text-white">
+    <div class="container">
+      <div
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+        >
+          <img
+            src="{% static 'cupra-logo-black.png' %}"
+            alt=""
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+            style="margin-right: 1em;"
+          />
+          LOGEIQUE
+        </a>
+
+        <ul
+          class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+        >
+          <li>
+            <a href="{% url 'spaces:home' %}" class="nav-link text-white">
+              Accueil
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'my_auths:login' %}" class="nav-link text-white">
+              Connexion
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+              Info
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              Effet
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %} {% block body-app %}
+<div class="d-flex justify-content-center" style="margin-top: 2%;">
+  <div style="width: 33%;" class="text-center align-middle">
+    <div class="d-flex justify-content-center">
+      <p>
+        <h1>Inscription</h1>
+      </p>
+    </div>
+
+    <div class="card" style="padding: 3em;border-radius: 50%;">
+      <div class="d-flex justify-content-center">
+        <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 4em;"></i>
+      </div>
+
+      <div class="card-body">
+        <form class="needs-validation" novalidate>
+          <div class="mb-3 row">
+            <div class="col-sm-12" style=" margin: 0.5em 0em;">
+              <input style="font-size: 20px;border-radius: 1em; padding: 0.1em 1em;height: 130%;" type="text" class="form-control" id="inputText" placeholder="Contact" required>
+            </div>
+          </div>
+
+          <div class="mb-3 row">            
+            <div class="col-sm-12" style=" margin: 0.5em 0em;">
+              <input style="font-size: 20px;border-radius: 1em; padding: 0.1em 1em;height: 130%;" type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" required>
+            </div>
+          </div>
+
+          <div class="mb-3 row">            
+            <div class="col-sm-12" style=" margin: 0.5em 0em;">
+              <input style="font-size: 20px;border-radius: 1em; padding: 0.1em 1em;height: 130%;" type="password" class="form-control" id="inputPasswordv" placeholder="Confirmez mot de passe" required>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center" style="margin-bottom:1em;">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+              <label class="form-check-label" for="inlineRadio1">Propriétaire</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+              <label class="form-check-label" for="inlineRadio2">Client</label>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <div class="col-sm-12">
+              <div class="d-flex justify-content-center">
+                <button style="width: 100%;border-radius: 1em;height: 150%;" type="submit" class="btn btn-dark">INSCRIPTION</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <p style="font-size:smaller;">Déjà un compte? Cliquez sur <a href="{% url 'my_auths:login' %}" class="nav-link" style="color: rgb(219, 31, 31);">connexion</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block footer-app %}
+<div class="bottom">
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">
+        This app is &copy; LOGEIQUE
+      </p>
+    </div>
+  </footer>
+</div>
+{% endblock %} {% block costum-scripts %}
+<script>
+  ;(() => {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        'submit',
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        },
+        false,
+      )
+    })
+  })()
+</script>
+{% endblock %}
