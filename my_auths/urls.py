@@ -11,5 +11,6 @@ urlpatterns = [
     path('space/', user_space, name='space'),
     path('logout/', logout, name='logout'),
     # -------------------------------------------------Landlord urls----------------------------------------------
-    
+    path('landlord/', landlordClients, name='landlordClients'),
+    path('maisons/', landlordMaisons, name='landlordMaisons'),
 ]

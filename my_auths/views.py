@@ -123,3 +123,17 @@ def user_space(request):
         return redirect('spaces:home')
 
 # --------------------------------------------------------Landlord views-----------------------------------------------------------------
+
+@login_required(login_url='my_auths:login')
+def landlordClients(request):
+    return render(
+        request,
+        'space/landlord/clients.html'
+    )
+
+@login_required(login_url='my_auths:login')
+def landlordMaisons(request):
+    return render(
+        request,
+        'space/landlord/maisons.html'
+    )

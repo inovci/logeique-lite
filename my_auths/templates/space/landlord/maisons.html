@@ -1,0 +1,22 @@
+{% extends "space/space.html" %} {% block accueil %}
+<a
+  style="border-radius: 5px; color: #fff;"
+  class="btn-outline-secondary nav-link"
+  href="{% url 'my_auths:space' %}"
+>
+  <i class="fa fa-home" aria-hidden="true"></i>
+  ACCUEIL
+</a>
+{% endblock %} {% block maisons %}
+<a
+  style="color: #fff;"
+  class="nav-link"
+  href="{% url 'my_auths:landlordMaisons' %}"
+>
+  Maisons
+</a>
+{% endblock %} {% block content %}
+<div>
+  <h1>Maisons page !!!</h1>
+</div>
+{% endblock %}
