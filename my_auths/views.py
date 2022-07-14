@@ -133,7 +133,56 @@ def landlordClients(request):
 
 @login_required(login_url='my_auths:login')
 def landlordMaisons(request):
+    maisons = Maison.objects.all()
+    if request.method == 'POST':
+        status = request.POST['status']
+        landlord = Landlord.objects.get(user=request.user)
+
+        if status == 'location':
+            maison = Maison.objects.create(
+                ville=request.POST['ville'],
+                quartier=request.POST['quartier'],
+                loyer=int(request.POST['loyer']),
+                cotion=int(request.POST['cotion']),
+                type_maison=request.POST['type_maison'],
+                nombre_piece=int(request.POST['nombre_piece']),
+                en_location=True,
+                photos=request.FILES['photo'],
+                landlord=landlord
+            )
+            maison.save()
+            return redirect("my_auths:landlordMaisons")
+        elif status == 'vente':
+            maison = Maison.objects.create(
+                ville=request.POST['ville'],
+                quartier=request.POST['quartier'],
+                loyer=int(request.POST['loyer']),
+                cotion=int(request.POST['cotion']),
+                type_maison=request.POST['type_maison'],
+                nombre_piece=int(request.POST['nombre_piece']),
+                en_vente=True,
+                photos=request.FILES['photo'],
+                landlord=landlord
+            )
+            maison.save()
+            return redirect("my_auths:landlordMaisons")
+        elif status == 'loc_ven':
+            maison = Maison.objects.create(
+                ville=request.POST['ville'],
+                quartier=request.POST['quartier'],
+                loyer=int(request.POST['loyer']),
+                cotion=int(request.POST['cotion']),
+                type_maison=request.POST['type_maison'],
+                nombre_piece=int(request.POST['nombre_piece']),
+                en_location=True,
+                en_vente=True,
+                photos=request.POST.get('photo'),
+                landlord=landlord
+            )
+            maison.save()
+            return redirect("my_auths:landlordMaisons")
     return render(
         request,
-        'space/landlord/maisons.html'
+        'space/landlord/maisons.html',
+        locals()
     )

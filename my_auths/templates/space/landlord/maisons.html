@@ -57,7 +57,14 @@
                   aria-label="Close"
                 ></button>
               </div>
-              <form class="needs-validation" action="" method="POST" novalidate>
+              <form
+                class="needs-validation"
+                action=""
+                method="POST"
+                novalidate
+                action="{% url 'my_auths:landlordMaisons' %}"
+                enctype="multipart/form-data"
+              >
                 <div class="modal-body">
                   {% csrf_token %}
                   <div class="mb-3 row">
@@ -221,6 +228,7 @@
                       Image Principale
                     </label>
                     <input
+                      name="photo"
                       type="file"
                       class="form-control"
                       id="inputGroupFile01"
@@ -257,6 +265,42 @@
         </div>
       </div>
     </nav>
+    {% if maisons %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% for maison in maisons %}
+      <div class="col">
+        <div class="card shadow-sm">
+          <img
+            class="bd-placeholder-img card-img-top"
+            width="100%"
+            height="auto"
+            src="{{maison.photos.url}}"
+            alt="Photo of a Shiba Inu"
+          />
+
+          <div class="card-body">
+            <p class="card-text">
+              This is a wider card with supporting text below as a natural
+              lead-in to additional content. This content is a little bit
+              longer. Ville : {{maison.ville}}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  En savoir plus
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  Contacter
+                </button>
+              </div>
+              <small class="text-muted">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %} {% block costum-scripts %}
