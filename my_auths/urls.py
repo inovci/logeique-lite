@@ -13,4 +13,7 @@ urlpatterns = [
     # -------------------------------------------------Landlord urls----------------------------------------------
     path('landlord/', landlordClients, name='landlordClients'),
     path('maisons/', landlordMaisons, name='landlordMaisons'),
+    path('add-maison/', addMaison, name='addMaison'),
+    path('delete-maison/<int:id>', deleteMaison, name='deleteMaison'),
+    path('edit-maison/<int:id>', editMaison, name='editMaison'),
 ]

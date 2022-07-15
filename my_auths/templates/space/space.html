@@ -37,11 +37,11 @@
       }
       .col-2 {
         flex: 0 0 auto;
-        width: 10%;
+        width: 11%;
       }
       .col-10 {
         flex: 0 0 auto;
-        width: 90%;
+        width: 89%;
       }
     </style>
   </head>
@@ -119,8 +119,11 @@
             </div>
 
             <div class="pt-3">
-              <a href="{% url 'my_auths:logout' %}">
-                <button>DECONNEXION</button>
+              <a
+                href="{% url 'my_auths:logout' %}"
+                class="btn btn-outline-light"
+              >
+                DECONNEXION
               </a>
             </div>
           </nav>

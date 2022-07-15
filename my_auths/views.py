@@ -134,6 +134,15 @@ def landlordClients(request):
 @login_required(login_url='my_auths:login')
 def landlordMaisons(request):
     maisons = Maison.objects.all()
+    
+    return render(
+        request,
+        'space/landlord/maisons.html',
+        locals()
+    )
+
+@login_required(login_url='my_auths:login')
+def addMaison(request):
     if request.method == 'POST':
         status = request.POST['status']
         landlord = Landlord.objects.get(user=request.user)
@@ -181,6 +190,52 @@ def landlordMaisons(request):
             )
             maison.save()
             return redirect("my_auths:landlordMaisons")
+
+    return redirect("my_auths:landlordMaisons")
+
+@login_required(login_url='my_auths:login')
+def editMaison(request, id):
+    if request.method == 'POST':
+        status = request.POST['status']
+        landlord = Landlord.objects.get(user=request.user)
+        maison = Maison.objects.get(id=id, landlord=landlord)
+
+        if status == 'location':
+            maison.ville=request.POST['ville']
+            maison.quartier=request.POST['quartier']
+            maison.loyer=int(request.POST['loyer'])
+            maison.cotion=int(request.POST['cotion'])
+            maison.type_maison=request.POST['type_maison']
+            maison.nombre_piece=int(request.POST['nombre_piece'])
+            maison.en_location=True
+            maison.en_vente=False
+            maison.photos=request.FILES['photo']
+            maison.save()
+            return redirect("my_auths:landlordMaisons")
+        elif status == 'vente':
+            maison.ville=request.POST['ville']
+            maison.quartier=request.POST['quartier']
+            maison.loyer=int(request.POST['loyer'])
+            maison.cotion=int(request.POST['cotion'])
+            maison.type_maison=request.POST['type_maison']
+            maison.nombre_piece=int(request.POST['nombre_piece'])
+            maison.en_location=False
+            maison.en_vente=True
+            maison.photos=request.FILES['photo']
+            maison.save()
+            return redirect("my_auths:landlordMaisons")
+        elif status == 'loc_ven':
+            maison.ville=request.POST['ville']
+            maison.quartier=request.POST['quartier']
+            maison.loyer=int(request.POST['loyer'])
+            maison.cotion=int(request.POST['cotion'])
+            maison.type_maison=request.POST['type_maison']
+            maison.nombre_piece=int(request.POST['nombre_piece'])
+            maison.en_location=True
+            maison.en_vente=True
+            maison.photos=request.FILES['photo']
+            maison.save()
+            return redirect("my_auths:landlordMaisons")
     return render(
         request,
         'space/landlord/maisons.html',
@@ -193,8 +248,6 @@ def deleteMaison(request, id):
     try:
         maison = Maison.objects.get(id=id, landlord=landlord)
         maison.delete()
-        del_house = True
         return redirect("my_auths:landlordMaisons")
     except:
-        del_house = False
         return redirect("my_auths:landlordMaisons")
