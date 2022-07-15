@@ -35,6 +35,14 @@
         padding: 0.5rem 1rem;
         border-radius: 1rem;
       }
+      .col-2 {
+        flex: 0 0 auto;
+        width: 10%;
+      }
+      .col-10 {
+        flex: 0 0 auto;
+        width: 90%;
+      }
     </style>
   </head>
   <body>
@@ -79,7 +87,7 @@
                     class="btn-outline-secondary nav-link active"
                     href="{% url 'my_auths:space' %}"
                   >
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-dashboard" aria-hidden="true"></i>
                     ACCUEIL
                   </a>
                   {% endblock %}
@@ -91,6 +99,7 @@
                     class="nav-link"
                     href="{% url 'my_auths:landlordMaisons' %}"
                   >
+                    <i class="fa fa-home" aria-hidden="true"></i>
                     Maisons
                   </a>
                   {% endblock %}
@@ -109,7 +118,7 @@
               </ul>
             </div>
 
-            <div>
+            <div class="pt-3">
               <a href="{% url 'my_auths:logout' %}">
                 <button>DECONNEXION</button>
               </a>
@@ -118,6 +127,11 @@
           {% endblock %}
         </div>
         <div class="col-10">
+          <header>
+            <nav class="navbar" style="background-color: #e3f2fd;">
+              <h2>Header</h2>
+            </nav>
+          </header>
           <main style="background-color: #fff; height: 100vh;" role="main">
             <div>
               {% block content %}

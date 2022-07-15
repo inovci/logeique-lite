@@ -176,7 +176,7 @@ def landlordMaisons(request):
                 nombre_piece=int(request.POST['nombre_piece']),
                 en_location=True,
                 en_vente=True,
-                photos=request.POST.get('photo'),
+                photos=request.FILES['photo'],
                 landlord=landlord
             )
             maison.save()
@@ -186,3 +186,15 @@ def landlordMaisons(request):
         'space/landlord/maisons.html',
         locals()
     )
+
+@login_required(login_url='my_auths:login')
+def deleteMaison(request, id):
+    landlord = Landlord.objects.get(user=request.user)
+    try:
+        maison = Maison.objects.get(id=id, landlord=landlord)
+        maison.delete()
+        del_house = True
+        return redirect("my_auths:landlordMaisons")
+    except:
+        del_house = False
+        return redirect("my_auths:landlordMaisons")

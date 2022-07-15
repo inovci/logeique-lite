@@ -4,7 +4,7 @@
   class="btn-outline-secondary nav-link"
   href="{% url 'my_auths:space' %}"
 >
-  <i class="fa fa-home" aria-hidden="true"></i>
+  <i class="fa fa-dashboard" aria-hidden="true"></i>
   ACCUEIL
 </a>
 {% endblock %} {% block maisons %}
@@ -13,6 +13,7 @@
   class="nav-link"
   href="{% url 'my_auths:landlordMaisons' %}"
 >
+  <i class="fa fa-home" aria-hidden="true"></i>
   Maisons
 </a>
 {% endblock %} {% block content %}
@@ -22,7 +23,7 @@
       class="navbar navbar-dark bg-primary"
       style="border-radius: 0.5em; padding: 1em;"
     >
-      <h1>Maisons page !!!</h1>
+      <h3>Maisons page !!!</h3>
 
       <div>
         <button
@@ -266,7 +267,10 @@
       </div>
     </nav>
     {% if maisons %}
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3"
+      style="padding: 0.5em 0;"
+    >
       {% for maison in maisons %}
       <div class="col">
         <div class="card shadow-sm">
@@ -280,20 +284,18 @@
 
           <div class="card-body">
             <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer. Ville : {{maison.ville}}
+              Quantité: {{maison.quan_dispo}} | Ville : {{maison.ville}}
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  En savoir plus
+                <button type="button" class="btn btn-sm btn-outline-primary">
+                  Editer
                 </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  Contacter
+                <button type="button" class="btn btn-sm btn-outline-danger">
+                  Supprimer
                 </button>
               </div>
-              <small class="text-muted">9 mins</small>
+              <small class="text-muted">{{maison.ajoute_le}}</small>
             </div>
           </div>
         </div>
