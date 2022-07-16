@@ -1,0 +1,130 @@
+<div
+  class="modal fade"
+  id="profileModal"
+  tabindex="-1"
+  aria-labelledby="profileModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ajoutMaisonModalLabel">
+          Profile
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form method="POST" action="" enctype="multipart/form-data">
+        <div class="modal-body">
+          {% csrf_token %}
+          <div class="mb-3 row">
+            <div class="col-9 row">
+              <div class="col-sm-12" style="margin: 0.5em 0em;">
+                <input
+                  name="nom"
+                  style="
+                    font-size: 20px;
+                    border-radius: 1em;
+                    padding: 0.1em 1em;
+                    height: 130%;
+                  "
+                  type="text"
+                  class="form-control"
+                  id="inputText"
+                  placeholder="Votre nom"
+                  value="{{request.user.last_name}}"
+                />
+              </div>
+              <div class="col-sm-12" style="margin: 0.5em 0em;">
+                <input
+                  name="prenom"
+                  style="
+                    font-size: 20px;
+                    border-radius: 1em;
+                    padding: 0.1em 1em;
+                    height: 130%;
+                  "
+                  type="text"
+                  class="form-control"
+                  id="inputText"
+                  placeholder="Votre prénom"
+                  value="{{request.user.last_name}}"
+                />
+              </div>
+              <div class="col-sm-12">
+                <p style="margin: 1em;">
+                  <a
+                    data-bs-toggle="collapse"
+                    href="#collapseUserCredential"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseUserCredential"
+                  >
+                    Voir plus
+                  </a>
+                </p>
+                <div class="collapse row" id="collapseUserCredential">
+                  <div style="margin: 0.5em 0em;">
+                    <input
+                      name="username"
+                      style="
+                        font-size: 20px;
+                        border-radius: 1em;
+                        padding: 0.1em 1em;
+                        height: 130%;
+                      "
+                      type="text"
+                      class="form-control"
+                      id="inputText"
+                      placeholder="Votre contact"
+                      value="{{request.user.username}}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3 row">
+              <div class="text-center">
+                {% if request.user.landlord.avatar %}
+                <img
+                  style="border-radius: 50%;"
+                  width="100%"
+                  height="auto"
+                  src="{{request.user.landlord.avatar.url}}"
+                  alt="Image de ..."
+                />
+                {% else %}
+                <i
+                  class="fas fa-user-circle"
+                  style="
+                    width: 100%;
+                    height: auto;
+                    color: cornflowerblue;
+                    padding: 2px;
+                  "
+                ></i>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            data-bs-dismiss="modal"
+          >
+            Annuler
+          </button>
+          <button type="submit" class="btn btn-outline-success">
+            Mettre à jour
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

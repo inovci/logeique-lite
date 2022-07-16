@@ -125,6 +125,19 @@ def user_space(request):
 # --------------------------------------------------------Landlord views-----------------------------------------------------------------
 
 @login_required(login_url='my_auths:login')
+def updateLandlordProfile(request):
+    if request.method == 'POST':
+        user = User.objects.get(username=request.user.username)
+
+        user.last_name = request.POST['nom']
+        user.first_name = request.POST['prenom']
+        user.save()
+
+        return redirect("my_auths:space")
+
+    return redirect("my_auths:space")
+
+@login_required(login_url='my_auths:login')
 def landlordClients(request):
     return render(
         request,

@@ -137,6 +137,8 @@
                     href=""
                     class="nav justify-content-end"
                     style="margin-right: 1em;"
+                    data-bs-toggle="modal"
+                    data-bs-target="#profileModal"
                   >
                     {% if request.user.landlord.avatar %}
                     <img
@@ -159,6 +161,8 @@
                     {% endif %}
                   </a>
                 </ul>
+
+                {% include "space/landlord/profile.html" %}
               </nav>
             </header>
             <div>
