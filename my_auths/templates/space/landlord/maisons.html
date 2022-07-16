@@ -20,10 +20,10 @@
 <div style="position: relative;">
   <div class="container-fluid" style="position: absolute; margin-top: 1em;">
     <nav
-      class="navbar navbar-dark bg-primary"
-      style="border-radius: 0.5em; padding: 1em;"
+      class="navbar"
+      style="border-radius: 0.5em; padding: 1em; background-color: #e3f2fd;"
     >
-      <h3>Maisons page !!!</h3>
+      <h3>Maisons</h3>
 
       <div>
         <button
@@ -240,6 +240,7 @@
                       Autres images
                     </label>
                     <input
+                      name="photos"
                       type="file"
                       class="form-control"
                       id="inputGroupFile02"
@@ -276,9 +277,9 @@
           <img
             class="bd-placeholder-img card-img-top"
             width="100%"
-            height="auto"
-            src="{{maison.photos.url}}"
-            alt="Photo of a Shiba Inu"
+            height="200px"
+            src="{{maison.photo.url}}"
+            alt="Photo de la maison de {{request.user.username}}"
           />
 
           <div class="card-body">
@@ -286,13 +287,14 @@
               Quantité: {{maison.quan_dispo}} | Ville : {{maison.ville}}
             </p>
             <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
+              <div class="">
                 <button
                   type="button"
                   class="btn btn-sm btn-outline-primary"
                   data-bs-toggle="modal"
                   data-bs-target="#editMaisonModal"
                 >
+                  <i class="fa-solid fa-pen"></i>
                   Editer
                 </button>
 
@@ -520,6 +522,7 @@
                               Autres images
                             </label>
                             <input
+                              name="photos"
                               type="file"
                               class="form-control"
                               id="inputGroupFile02"
@@ -549,23 +552,24 @@
                   type="button"
                   class="btn btn-sm btn-outline-danger"
                   data-bs-toggle="modal"
-                  data-bs-target="#delModal"
+                  data-bs-target="#delMaisonModal"
                 >
+                  <i class="fa-solid fa-trash"></i>
                   Supprimer
                 </button>
 
                 <!-- Vertically centered modal -->
                 <div
                   class="modal fade"
-                  id="delModal"
+                  id="delMaisonModal"
                   tabindex="-1"
-                  aria-labelledby="delModalLabel"
+                  aria-labelledby="delMaisonModalLabel"
                   aria-hidden="true"
                 >
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="delModalLabel">
+                        <h5 class="modal-title" id="delMaisonModalLabel">
                           Suppression
                         </h5>
                         <button

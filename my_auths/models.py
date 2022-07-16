@@ -42,6 +42,7 @@ class Maison(models.Model):
     nombre_piece = models.IntegerField(null=True)
     en_location = models.BooleanField(default=False, null=True, blank=True)
     en_vente = models.BooleanField(default=False, null=True, blank=True)
+    photo = models.ImageField(null=True, blank=True, upload_to="img/maisons/")
     photos = models.ImageField(null=True, blank=True, upload_to="img/maisons/")
     quan_dispo = models.IntegerField(null=True, blank=True, default=1)
     ajoute_le = models.DateField(auto_now_add=True)

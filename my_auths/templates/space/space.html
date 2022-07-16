@@ -58,25 +58,19 @@
             style="height: 100vh; background-color: #2a2a2b;"
           >
             <div class="pt-3">
-              <div class="text-center">
-                {% if request.user.landlord.avatar %}
+              <div class="text-center" style="padding: 1em;">
                 <img
-                  style="border-radius: 50%;"
-                  width="50%"
-                  src=""
-                  alt="Image de ..."
+                  style="width: 90%; height: auto; border-radius: 50%;"
+                  src="{% static 'LG.jpg' %}"
+                  alt="Logo Logeique"
                 />
+              </div>
+              <div class="text-center">
                 <div class="text-white">
                   <p style="color: #1ce; font-size: 18px;">
                     Monsieur {{request.user.last_name}}
                   </p>
                 </div>
-                {% else %}
-                <i
-                  class="fas fa-user-circle"
-                  style="font-size: 6rem; color: cornflowerblue; padding: 2px;"
-                ></i>
-                {% endif %}
               </div>
 
               <ul class="nav flex-column" style="width: 100%;">
@@ -111,6 +105,7 @@
                     class="nav-link"
                     href="{% url 'my_auths:landlordClients' %}"
                   >
+                    <i class="fa-solid fa-users"></i>
                     Clients
                   </a>
                   {% endblock %}
@@ -118,11 +113,13 @@
               </ul>
             </div>
 
-            <div class="pt-3">
+            <div class="pt-3 text-center">
               <a
                 href="{% url 'my_auths:logout' %}"
-                class="btn btn-outline-light"
+                style="color: #fff;"
+                class="nav-link"
               >
+                <i class="fa-solid fa-right-from-bracket"></i>
                 DECONNEXION
               </a>
             </div>
@@ -130,12 +127,40 @@
           {% endblock %}
         </div>
         <div class="col-10">
-          <header>
-            <nav class="navbar" style="background-color: #e3f2fd;">
-              <h2>Header</h2>
-            </nav>
-          </header>
           <main style="background-color: #fff; height: 100vh;" role="main">
+            <header style="margin-left: -1.5em;">
+              <nav class="navbar bg-primary">
+                <h2 class="text-white" style="margin-left: 1em;">Logeique</h2>
+
+                <ul class="nav justify-content-end">
+                  <a
+                    href=""
+                    class="nav justify-content-end"
+                    style="margin-right: 1em;"
+                  >
+                    {% if request.user.landlord.avatar %}
+                    <img
+                      style="border-radius: 50%;"
+                      width="10%"
+                      height="auto"
+                      src="{{request.user.landlord.avatar.url}}"
+                      alt="Image de ..."
+                    />
+                    {% else %}
+                    <i
+                      class="fas fa-user-circle"
+                      style="
+                        width: 10%;
+                        height: auto;
+                        color: cornflowerblue;
+                        padding: 2px;
+                      "
+                    ></i>
+                    {% endif %}
+                  </a>
+                </ul>
+              </nav>
+            </header>
             <div>
               {% block content %}
               <h1>Propositions selon vos standards.</h1>

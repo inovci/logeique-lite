@@ -156,7 +156,8 @@ def addMaison(request):
                 type_maison=request.POST['type_maison'],
                 nombre_piece=int(request.POST['nombre_piece']),
                 en_location=True,
-                photos=request.FILES['photo'],
+                photo=request.FILES['photo'],
+                photos=request.FILES['photos'],
                 landlord=landlord
             )
             maison.save()
@@ -170,7 +171,7 @@ def addMaison(request):
                 type_maison=request.POST['type_maison'],
                 nombre_piece=int(request.POST['nombre_piece']),
                 en_vente=True,
-                photos=request.FILES['photo'],
+                photo=request.FILES['photo'],
                 landlord=landlord
             )
             maison.save()
@@ -185,7 +186,7 @@ def addMaison(request):
                 nombre_piece=int(request.POST['nombre_piece']),
                 en_location=True,
                 en_vente=True,
-                photos=request.FILES['photo'],
+                photo=request.FILES['photo'],
                 landlord=landlord
             )
             maison.save()
@@ -209,7 +210,7 @@ def editMaison(request, id):
             maison.nombre_piece=int(request.POST['nombre_piece'])
             maison.en_location=True
             maison.en_vente=False
-            maison.photos=request.FILES['photo']
+            maison.photo=request.FILES['photo']
             maison.save()
             return redirect("my_auths:landlordMaisons")
         elif status == 'vente':
@@ -221,7 +222,7 @@ def editMaison(request, id):
             maison.nombre_piece=int(request.POST['nombre_piece'])
             maison.en_location=False
             maison.en_vente=True
-            maison.photos=request.FILES['photo']
+            maison.photo=request.FILES['photo']
             maison.save()
             return redirect("my_auths:landlordMaisons")
         elif status == 'loc_ven':
@@ -233,7 +234,7 @@ def editMaison(request, id):
             maison.nombre_piece=int(request.POST['nombre_piece'])
             maison.en_location=True
             maison.en_vente=True
-            maison.photos=request.FILES['photo']
+            maison.photo=request.FILES['photo']
             maison.save()
             return redirect("my_auths:landlordMaisons")
     return render(
