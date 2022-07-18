@@ -4,18 +4,21 @@
   class="btn-outline-secondary nav-link"
   href="{% url 'my_auths:space' %}"
 >
-  <i class="fa fa-home" aria-hidden="true"></i>
-  ACCUEIL
+  <i class="fa fa-dashboard" aria-hidden="true"></i>
+  Accueil
 </a>
 {% endblock %} {% block clients %}
-<a
-  style="color: #fff;"
-  class="nav-link active"
-  href="{% url 'my_auths:landlordClients' %}"
->
-  <i class="fa-solid fa-users"></i>
-  Clients
-</a>
+<div style="background-color: rgb(87, 81, 81);">
+  <a
+    style="color: #fff;"
+    class="nav-link active"
+    href="{% url 'my_auths:landlordClients' %}"
+  >
+    <i class="fa-solid fa-users"></i>
+    Clients
+  </a>
+</div>
+
 {% endblock %} {% block content %}
 <div>
   <h1>Clients page !!!</h1>

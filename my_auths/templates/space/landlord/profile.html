@@ -18,7 +18,11 @@
           aria-label="Close"
         ></button>
       </div>
-      <form method="POST" action="" enctype="multipart/form-data">
+      <form
+        method="POST"
+        action="{% url 'my_auths:updateLandlordProfile' %}"
+        enctype="multipart/form-data"
+      >
         <div class="modal-body">
           {% csrf_token %}
           <div class="mb-3 row">
@@ -52,7 +56,7 @@
                   class="form-control"
                   id="inputText"
                   placeholder="Votre prénom"
-                  value="{{request.user.last_name}}"
+                  value="{{request.user.first_name}}"
                 />
               </div>
               <div class="col-sm-12">

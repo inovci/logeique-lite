@@ -159,51 +159,102 @@ def addMaison(request):
     if request.method == 'POST':
         status = request.POST['status']
         landlord = Landlord.objects.get(user=request.user)
+        quantite = request.POST['quantite']
 
         if status == 'location':
-            maison = Maison.objects.create(
-                ville=request.POST['ville'],
-                quartier=request.POST['quartier'],
-                loyer=int(request.POST['loyer']),
-                cotion=int(request.POST['cotion']),
-                type_maison=request.POST['type_maison'],
-                nombre_piece=int(request.POST['nombre_piece']),
-                en_location=True,
-                photo=request.FILES['photo'],
-                photos=request.FILES['photos'],
-                landlord=landlord
-            )
-            maison.save()
-            return redirect("my_auths:landlordMaisons")
+            if quantite <= 0:
+                maison = Maison.objects.create(
+                    ville=request.POST['ville'],
+                    quartier=request.POST['quartier'],
+                    loyer=int(request.POST['loyer']),
+                    cotion=int(request.POST['cotion']),
+                    type_maison=request.POST['type_maison'],
+                    nombre_piece=int(request.POST['nombre_piece']),
+                    en_location=True,
+                    photo=request.FILES['photo'],
+                    photos=request.FILES['photos'],
+                    landlord=landlord
+                )
+                maison.save()
+                return redirect("my_auths:landlordMaisons")
+            elif quantite > 1:
+                maison = Maison.objects.create(
+                    ville=request.POST['ville'],
+                    quartier=request.POST['quartier'],
+                    loyer=int(request.POST['loyer']),
+                    cotion=int(request.POST['cotion']),
+                    type_maison=request.POST['type_maison'],
+                    nombre_piece=int(request.POST['nombre_piece']),
+                    en_location=True,
+                    photo=request.FILES['photo'],
+                    photos=request.FILES['photos'],
+                    quan_dispo=quantite,
+                    landlord=landlord
+                )
+                maison.save()
+                return redirect("my_auths:landlordMaisons")
         elif status == 'vente':
-            maison = Maison.objects.create(
-                ville=request.POST['ville'],
-                quartier=request.POST['quartier'],
-                loyer=int(request.POST['loyer']),
-                cotion=int(request.POST['cotion']),
-                type_maison=request.POST['type_maison'],
-                nombre_piece=int(request.POST['nombre_piece']),
-                en_vente=True,
-                photo=request.FILES['photo'],
-                landlord=landlord
-            )
-            maison.save()
-            return redirect("my_auths:landlordMaisons")
+            if quantite <= 0:
+                maison = Maison.objects.create(
+                    ville=request.POST['ville'],
+                    quartier=request.POST['quartier'],
+                    loyer=int(request.POST['loyer']),
+                    cotion=int(request.POST['cotion']),
+                    type_maison=request.POST['type_maison'],
+                    nombre_piece=int(request.POST['nombre_piece']),
+                    en_vente=True,
+                    photo=request.FILES['photo'],
+                    landlord=landlord
+                )
+                maison.save()
+                return redirect("my_auths:landlordMaisons")
+            elif quantite > 1:
+                maison = Maison.objects.create(
+                    ville=request.POST['ville'],
+                    quartier=request.POST['quartier'],
+                    loyer=int(request.POST['loyer']),
+                    cotion=int(request.POST['cotion']),
+                    type_maison=request.POST['type_maison'],
+                    nombre_piece=int(request.POST['nombre_piece']),
+                    en_vente=True,
+                    photo=request.FILES['photo'],
+                    quan_dispo=quantite,
+                    landlord=landlord
+                )
+                maison.save()
+                return redirect("my_auths:landlordMaisons")
         elif status == 'loc_ven':
-            maison = Maison.objects.create(
-                ville=request.POST['ville'],
-                quartier=request.POST['quartier'],
-                loyer=int(request.POST['loyer']),
-                cotion=int(request.POST['cotion']),
-                type_maison=request.POST['type_maison'],
-                nombre_piece=int(request.POST['nombre_piece']),
-                en_location=True,
-                en_vente=True,
-                photo=request.FILES['photo'],
-                landlord=landlord
-            )
-            maison.save()
-            return redirect("my_auths:landlordMaisons")
+            if quantite <= 0:
+                maison = Maison.objects.create(
+                    ville=request.POST['ville'],
+                    quartier=request.POST['quartier'],
+                    loyer=int(request.POST['loyer']),
+                    cotion=int(request.POST['cotion']),
+                    type_maison=request.POST['type_maison'],
+                    nombre_piece=int(request.POST['nombre_piece']),
+                    en_location=True,
+                    en_vente=True,
+                    photo=request.FILES['photo'],
+                    landlord=landlord
+                )
+                maison.save()
+                return redirect("my_auths:landlordMaisons")
+            elif quantite > 1:
+                maison = Maison.objects.create(
+                    ville=request.POST['ville'],
+                    quartier=request.POST['quartier'],
+                    loyer=int(request.POST['loyer']),
+                    cotion=int(request.POST['cotion']),
+                    type_maison=request.POST['type_maison'],
+                    nombre_piece=int(request.POST['nombre_piece']),
+                    en_location=True,
+                    en_vente=True,
+                    photo=request.FILES['photo'],
+                    quan_dispo=quantite,
+                    landlord=landlord
+                )
+                maison.save()
+                return redirect("my_auths:landlordMaisons")
 
     return redirect("my_auths:landlordMaisons")
 
@@ -213,6 +264,7 @@ def editMaison(request, id):
         status = request.POST['status']
         landlord = Landlord.objects.get(user=request.user)
         maison = Maison.objects.get(id=id, landlord=landlord)
+        quantite = request.POST['quantite']
 
         if status == 'location':
             maison.ville=request.POST['ville']
@@ -224,6 +276,7 @@ def editMaison(request, id):
             maison.en_location=True
             maison.en_vente=False
             maison.photo=request.FILES['photo']
+            quan_dispo=quantite,
             maison.save()
             return redirect("my_auths:landlordMaisons")
         elif status == 'vente':
@@ -236,6 +289,7 @@ def editMaison(request, id):
             maison.en_location=False
             maison.en_vente=True
             maison.photo=request.FILES['photo']
+            quan_dispo=quantite,
             maison.save()
             return redirect("my_auths:landlordMaisons")
         elif status == 'loc_ven':
@@ -248,6 +302,7 @@ def editMaison(request, id):
             maison.en_location=True
             maison.en_vente=True
             maison.photo=request.FILES['photo']
+            quan_dispo=quantite,
             maison.save()
             return redirect("my_auths:landlordMaisons")
     return render(

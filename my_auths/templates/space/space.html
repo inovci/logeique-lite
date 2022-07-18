@@ -21,19 +21,9 @@
     <script defer src="{% static 'fontawesome/js/fontawesome.js' %}"></script>
 
     <style>
-      .nav-pills .nav-link.active {
-        background-color: rgb(53, 52, 52);
-        color: #fff;
-      }
-
       .over_user:hover {
-        background-color: rgb(53, 52, 52);
+        background-color: rgb(87, 81, 81);
         color: #fff;
-      }
-      .for-chatter:hover {
-        border: solid 1px cornflowerblue;
-        padding: 0.5rem 1rem;
-        border-radius: 1rem;
       }
       .col-2 {
         flex: 0 0 auto;
@@ -74,19 +64,21 @@
               </div>
 
               <ul class="nav flex-column" style="width: 100%;">
-                <li class="nav-item">
+                <li class="nav-item over_user" style="margin: 0.3em 0em;">
                   {% block accueil %}
-                  <a
-                    style="border-radius: 5px; color: #fff;"
-                    class="btn-outline-secondary nav-link active"
-                    href="{% url 'my_auths:space' %}"
-                  >
-                    <i class="fa fa-dashboard" aria-hidden="true"></i>
-                    ACCUEIL
-                  </a>
+                  <div style="background-color: rgb(87, 81, 81);">
+                    <a
+                      style="border-radius: 5px; color: #fff;"
+                      class="btn-outline-secondary nav-link active"
+                      href="{% url 'my_auths:space' %}"
+                    >
+                      <i class="fa fa-dashboard" aria-hidden="true"></i>
+                      Accueil
+                    </a>
+                  </div>
                   {% endblock %}
                 </li>
-                <li class="nav-item">
+                <li class="nav-item over_user" style="margin: 0.3em 0em;">
                   {% block maisons %}
                   <a
                     style="color: #fff;"
@@ -98,7 +90,7 @@
                   </a>
                   {% endblock %}
                 </li>
-                <li class="nav-item">
+                <li class="nav-item over_user" style="margin: 0.3em 0em;">
                   {% block clients %}
                   <a
                     style="color: #fff;"
@@ -113,15 +105,17 @@
               </ul>
             </div>
 
-            <div class="pt-3 text-center">
-              <a
-                href="{% url 'my_auths:logout' %}"
-                style="color: #fff;"
-                class="nav-link"
-              >
-                <i class="fa-solid fa-right-from-bracket"></i>
-                DECONNEXION
-              </a>
+            <div class="pt-3">
+              <div class="nav nav-item over_user">
+                <a
+                  href="{% url 'my_auths:logout' %}"
+                  style="color: #fff;"
+                  class="nav-link"
+                >
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <span style="font-size: 12px;">DECONNEXION</span>
+                </a>
+              </div>
             </div>
           </nav>
           {% endblock %}
@@ -146,7 +140,7 @@
                       width="10%"
                       height="auto"
                       src="{{request.user.landlord.avatar.url}}"
-                      alt="Image de ..."
+                      alt="Image de {{request.user.username}}"
                     />
                     {% else %}
                     <i
