@@ -162,7 +162,7 @@ def addMaison(request):
         quantite = request.POST['quantite']
 
         if status == 'location':
-            if quantite <= 0:
+            if int(quantite) <= 0:
                 maison = Maison.objects.create(
                     ville=request.POST['ville'],
                     quartier=request.POST['quartier'],
@@ -177,7 +177,7 @@ def addMaison(request):
                 )
                 maison.save()
                 return redirect("my_auths:landlordMaisons")
-            elif quantite > 1:
+            elif int(quantite) > 1:
                 maison = Maison.objects.create(
                     ville=request.POST['ville'],
                     quartier=request.POST['quartier'],
@@ -194,7 +194,7 @@ def addMaison(request):
                 maison.save()
                 return redirect("my_auths:landlordMaisons")
         elif status == 'vente':
-            if quantite <= 0:
+            if int(quantite) <= 0:
                 maison = Maison.objects.create(
                     ville=request.POST['ville'],
                     quartier=request.POST['quartier'],
@@ -208,7 +208,7 @@ def addMaison(request):
                 )
                 maison.save()
                 return redirect("my_auths:landlordMaisons")
-            elif quantite > 1:
+            elif int(quantite) > 1:
                 maison = Maison.objects.create(
                     ville=request.POST['ville'],
                     quartier=request.POST['quartier'],
@@ -224,7 +224,7 @@ def addMaison(request):
                 maison.save()
                 return redirect("my_auths:landlordMaisons")
         elif status == 'loc_ven':
-            if quantite <= 0:
+            if int(quantite) <= 0:
                 maison = Maison.objects.create(
                     ville=request.POST['ville'],
                     quartier=request.POST['quartier'],
@@ -239,7 +239,7 @@ def addMaison(request):
                 )
                 maison.save()
                 return redirect("my_auths:landlordMaisons")
-            elif quantite > 1:
+            elif int(quantite) > 1:
                 maison = Maison.objects.create(
                     ville=request.POST['ville'],
                     quartier=request.POST['quartier'],
